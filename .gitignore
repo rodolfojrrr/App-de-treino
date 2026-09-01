@@ -1,0 +1,22 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+mobile-app/android/.gradle/
+mobile-app/android/app/build/
+mobile-app/android/build/
+frontend/node_modules/
+frontend/dist/
+desktop-app/node_modules/
+desktop-app/dist/
+*.treino
+
+# Generated shared source copies (created by prebuild/predev)
+mobile-app/src/premium-shared/
+frontend/src/premium-shared/
+
+# Capacitor generated Android project
+mobile-app/android/

@@ -1,0 +1,51 @@
+name: Gerar Windows - Treino Premium
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'shared-app/**'
+      - 'frontend/**'
+      - 'backend/**'
+      - 'desktop-app/**'
+      - 'scripts/**'
+      - '.github/workflows/gerar-instalador-windows.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v7
+      - name: Configurar Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Instalar e compilar interface
+        shell: pwsh
+        run: |
+          cd frontend
+          npm install --no-audit --no-fund
+          npm run build
+      - name: Instalar Electron
+        shell: pwsh
+        run: |
+          cd desktop-app
+          npm install --no-audit --no-fund
+      - name: Gerar instalador Windows
+        shell: pwsh
+        run: |
+          cd desktop-app
+          npm run dist
+      - name: Publicar instalador
+        uses: actions/upload-artifact@v7
+        with:
+          name: Treino-Premium-Windows-1.1.0
+          path: desktop-app/dist/*.exe
+          retention-days: 30

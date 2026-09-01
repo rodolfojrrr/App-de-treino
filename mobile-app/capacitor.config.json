@@ -1,0 +1,14 @@
+{
+  "appId": "com.rodolfo.treino",
+  "appName": "Treino Premium",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "server": {
+    "cleartext": true
+  },
+  "plugins": {
+    "CapacitorHttp": {
+      "enabled": true
+    }
+  }
+}

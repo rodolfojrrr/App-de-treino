@@ -1,0 +1,2 @@
+html, body, #root { min-height: 100%; }
+body { overscroll-behavior-y: none; }

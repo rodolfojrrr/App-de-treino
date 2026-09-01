@@ -1,0 +1,30 @@
+TREINO PREMIUM v1.1.0
+
+FOCO DESTA ATUALIZACAO
+- reps alvo visiveis durante o treino no celular
+- campos identificados: carga usada e reps feitas
+- reps feitas começam vazias a cada nova sessao
+- finalizar treino corrigido e sempre acessivel
+- adiar/trocar treino sem alterar a semana fixa
+- atividade avulsa: corrida, caminhada, pedal, natacao e outras
+
+COMO ENVIAR AO GITHUB
+1. Extraia esta pasta.
+2. Execute ATUALIZAR-GITHUB-v1.1.0.bat.
+3. Aguarde a mensagem SUCESSO.
+4. Abra o GitHub > Actions.
+5. Gere/baixe:
+   Android: Treino-Premium-APK-1.1.0
+   Windows: Treino-Premium-Windows-1.1.0
+
+TESTE PRINCIPAL NO CELULAR
+1. Inicie um treino com 3 ou mais series.
+2. Confira que cada card mostra REPS ALVO.
+3. Preencha CARGA USADA e REPS FEITAS.
+4. Conclua algumas series.
+5. Use FINALIZAR TREINO mesmo deixando uma serie pendente.
+6. Confirme que a sessao aparece no Historico.
+7. Em Hoje > Ajustar dia, escolha uma data futura e teste Adiar treino.
+8. Teste substituir uma data por Corrida ou Caminhada e finalize a atividade.
+
+A atualizacao usa o mesmo package id e a mesma assinatura de teste da linha 1.0.x.

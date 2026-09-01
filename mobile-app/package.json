@@ -1,0 +1,33 @@
+{
+  "name": "app-treino-premium-mobile",
+  "private": true,
+  "version": "1.1.0",
+  "type": "module",
+  "scripts": {
+    "sync:shared": "node ../scripts/sync-shared-app.mjs",
+    "predev": "npm run sync:shared",
+    "dev": "vite --host 0.0.0.0",
+    "prebuild": "npm run sync:shared",
+    "build": "vite build",
+    "preview": "vite --host 0.0.0.0",
+    "android:add": "cap add android",
+    "android:sync": "npm run build && cap sync android",
+    "android:open": "cap open android"
+  },
+  "dependencies": {
+    "@capacitor/android": "8.5.0",
+    "@capacitor/app": "8.1.1",
+    "@capacitor/core": "8.5.0",
+    "@capacitor/haptics": "8.0.2",
+    "@capacitor/local-notifications": "8.3.1",
+    "@vitejs/plugin-react": "6.0.3",
+    "lucide-react": "^0.544.0",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "vite": "8.1.1"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.5.0",
+    "@capacitor/assets": "3.0.5"
+  }
+}

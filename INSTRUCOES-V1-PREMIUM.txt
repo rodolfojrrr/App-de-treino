@@ -1,0 +1,33 @@
+TREINO PREMIUM v1.0.0 — COMO ENVIAR E TESTAR
+
+1. Extraia este ZIP em uma pasta normal do Windows.
+2. Dê dois cliques em ATUALIZAR_GITHUB_V1.bat.
+3. Quando pedir, cole o caminho da pasta LOCAL do seu repositório App-de-treino (a pasta que contém a pasta oculta .git).
+4. O atualizador copia a V1 para o repositório, remove arquivos antigos substituídos, cria o commit e envia para a branch main.
+5. No GitHub > Actions, aguarde os workflows novos finalizarem.
+6. Baixe os artifacts:
+   - Treino-Premium-APK-1.0.0
+   - Treino-Premium-Windows-1.0.0
+
+TESTE PRINCIPAL DO CELULAR
+
+- Crie a conta local com usuário e senha.
+- Inicie um treino.
+- Registre carga e repetições individualmente em uma série.
+- Volte para a Semana/Treinos e confirme que o treino continua ativo no dock.
+- Coloque o app em segundo plano por alguns minutos e retorne: o tempo deve refletir o tempo real decorrido.
+- Feche o app e abra novamente: a sessão ativa deve ser restaurada sem finalizar o treino.
+- Finalize somente pelo botão explícito de finalizar treino.
+- Confira Histórico e Evolução.
+
+OBSERVAÇÃO SOBRE O CRONÔMETRO
+
+O aplicativo não depende de um contador JavaScript ficar executando eternamente em segundo plano. Ele persiste o horário de início, pausas e estado da sessão. Por isso, mesmo se o processo for suspenso ou encerrado pelo Android, ao reabrir ele reconstrói o tempo real decorrido e recupera o treino ativo.
+
+PC ↔ CELULAR
+
+A versão Windows usa o mesmo núcleo visual e as mesmas regras do celular. Em Configurações, o PC mostra IP/porta e um código de pareamento de 6 dígitos. No celular, use esses dados para receber/enviar os dados pela mesma rede Wi-Fi.
+
+LOGIN
+
+A conta é local/offline nesta V1. A senha não é salva em texto puro; é armazenada como hash PBKDF2-SHA256 com salt. Não há servidor em nuvem nem conta online obrigatória.

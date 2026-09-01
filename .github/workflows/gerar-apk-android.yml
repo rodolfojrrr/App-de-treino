@@ -1,0 +1,72 @@
+name: Gerar APK Android - Treino Premium
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'shared-app/**'
+      - 'mobile-app/**'
+      - 'scripts/**'
+      - '.github/workflows/gerar-apk-android.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  apk-debug:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v7
+      - name: Configurar Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Configurar Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Configurar assinatura estável de teste
+        run: |
+          mkdir -p "$HOME/.android"
+          cp scripts/mobile/app-treino-debug.keystore "$HOME/.android/debug.keystore"
+      - name: Instalar dependências
+        working-directory: mobile-app
+        run: npm install --no-audit --no-fund
+      - name: Compilar interface premium
+        working-directory: mobile-app
+        run: npm run build
+      - name: Criar projeto Android
+        working-directory: mobile-app
+        run: |
+          rm -rf android
+          npx cap add android
+          npx cap sync android
+      - name: Gerar ícone e splash premium
+        working-directory: mobile-app
+        run: npx @capacitor/assets generate --android --iconBackgroundColor '#0B0E0F' --iconBackgroundColorDark '#0B0E0F' --splashBackgroundColor '#0B0E0F' --splashBackgroundColorDark '#0B0E0F'
+      - name: Aplicar versão Android
+        working-directory: mobile-app
+        run: |
+          sed -i 's/versionCode 1/versionCode 12/' android/app/build.gradle
+          sed -i 's/versionName "1.0"/versionName "1.1.0"/' android/app/build.gradle
+      - name: Compilar APK Debug
+        working-directory: mobile-app/android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
+      - name: Preparar APK
+        run: |
+          mkdir -p APK
+          cp mobile-app/android/app/build/outputs/apk/debug/app-debug.apk APK/Treino-Premium-v1.1.0-Debug.apk
+          sha256sum APK/Treino-Premium-v1.1.0-Debug.apk > APK/Treino-Premium-v1.1.0-Debug-SHA256.txt
+      - name: Publicar APK
+        uses: actions/upload-artifact@v7
+        with:
+          name: Treino-Premium-APK-1.1.0
+          path: APK/
+          retention-days: 30
